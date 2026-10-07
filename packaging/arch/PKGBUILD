@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oopaste-bin
+_pkgname=oopaste
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Merges lines of corresponding files sequentially using user-specified delimiters."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oopaste"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oopaste')
+conflicts=('oopaste')
+source_x86_64=("${url}/releases/download/v${pkgver}/oopaste-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oopaste-linux-x86_64" "${pkgdir}/usr/bin/oopaste"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oopaste-uninstall"
+}
